@@ -1,3 +1,5 @@
+import java.util.ArrayList;
+
 import Products.*;
 import Transactions.*;
 
@@ -7,12 +9,25 @@ public class MovieRental {
 		
 		Customer testCustomer = new Customer("David Copperfield");
 		
-		testCustomer.addTransaction(new Rental(new ChildrensMovie("Citizen Kane", true), 5));
-		testCustomer.addTransaction(new Rental(new RegularMovie("Airbud", false), 2));
-		testCustomer.addTransaction(new Rental(new RegularMovie("STRIPES", false), 3));
-		testCustomer.addTransaction(new Rental(new VideoGame("Dwarf Fortress"), 3));
-		testCustomer.addTransaction(new Sale(new ChildrensMovie("Flubber", 5.00, false )));
-		testCustomer.addTransaction(new Sale(new VideoGame("Kingdom Hearts", 19.99)));
+		ArrayList<Transaction> checkout = new ArrayList<Transaction>();
+		
+		
+		checkout.add(new Rental(new ChildrensMovie("Citizen Kane", true), 5));
+		checkout.add(new Rental(new RegularMovie("Airbud", false), 2));
+		checkout.add(new Rental(new RegularMovie("STRIPES", false), 3));
+		
+		
+		testCustomer.addCheckout(checkout);
+		
+		ArrayList<Transaction> checkout2 = new ArrayList<Transaction>();
+		
+		
+		checkout2.add(new Rental(new VideoGame("Dwarf Fortress"), 3));
+		checkout2.add(new Sale(new ChildrensMovie("Flubber", 5.00, false )));
+		checkout2.add(new Sale(new VideoGame("Kingdom Hearts", 19.99)));
+		
+		testCustomer.addCheckout(checkout2);
+		
 		System.out.print(testCustomer.statement());
 		
 		
