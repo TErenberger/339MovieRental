@@ -11,10 +11,4 @@ public class DefaultRenterPointStrategy implements RenterPointStrategy {
 		return 1;
 	}
 
-	@Override
-	public int calculateRenterPoints(Product product) {
-		
-		return 1;
-	}
-
 }

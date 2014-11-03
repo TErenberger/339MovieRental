@@ -1,19 +1,23 @@
 import java.util.Enumeration;
 import java.util.Vector;
 import java.util.ArrayList;
+
 import RenterPoints.DefaultRenterPointStrategy;
+import RenterPoints.FrequentPointTactician;
 import RenterPoints.RenterPointStrategy;
 import Transactions.*;
 
 
 public class Customer {
     private String _name;
+    private int _age;
     private ArrayList<ArrayList<Transaction>> _checkouts = new ArrayList<ArrayList<Transaction>>();
 	private int _frequentRenterPoints;
 	private RenterPointStrategy _renterPointStrategy = new DefaultRenterPointStrategy();
     
-    public Customer (String name) {
+    public Customer (String name, int age) {
         _name = name;
+        _age = age;
 		_frequentRenterPoints = 0;
     }
     
@@ -43,7 +47,7 @@ public class Customer {
 	        	double currentSubTotal = 0;
 	        	
 	        	// add frequent renter points
-	        	_frequentRenterPoints += currentTransaction.getFrequentRenterPoints(_renterPointStrategy);
+	        	
 	        	currentSubTotal += currentTransaction.getPrice();
 	        
 	         
@@ -51,6 +55,8 @@ public class Customer {
 	                      "\t$" +  String.format("%.2f", currentSubTotal) + "\n";
 	            checkoutTotal += currentSubTotal;
     	   }
+    	   
+    	   _frequentRenterPoints += FrequentPointTactician.pickStrategy(this, currentCheckout).calculateRentalPoint();
     	   result += "Checkout Total: $" + checkoutTotal + "\n\n";
            totalAmount += checkoutTotal; 
         }
