@@ -1,3 +1,4 @@
+package Runtime;
 import java.util.ArrayList;
 
 import Products.*;
@@ -7,7 +8,7 @@ public class MovieRental {
 
 	public static void main(String[] args) {
 		
-		Customer testCustomer = new Customer("David Copperfield", 99);
+		Customer testCustomer = new Customer("David Copperfield", 17);
 		
 		ArrayList<Transaction> checkout = new ArrayList<Transaction>();
 		

@@ -1,4 +1,6 @@
 package Transactions;
+import Pricing.Price;
+import Pricing.PriceStrategy;
 import Products.Product;
 import RenterPoints.*;
 
@@ -6,6 +8,7 @@ import RenterPoints.*;
 public abstract class Transaction {
 
 	protected Product _product;
+	protected Price _priceStrategy;
 	
 	public Transaction(Product product)
 	{
@@ -17,10 +20,5 @@ public abstract class Transaction {
 	}
 	
 	public abstract double getPrice();
-	
-	public int getFrequentRenterPoints(RenterPointStrategy strategy)
-	{
-		return strategy.calculateRenterPoints(this.getProduct());
-	}
 	
 }

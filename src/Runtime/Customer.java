@@ -1,3 +1,4 @@
+package Runtime;
 import java.util.Enumeration;
 import java.util.Vector;
 import java.util.ArrayList;
@@ -8,28 +9,38 @@ import RenterPoints.RenterPointStrategy;
 import Transactions.*;
 
 
-public class Customer {
+public class Customer 
+{
     private String _name;
     private int _age;
     private ArrayList<ArrayList<Transaction>> _checkouts = new ArrayList<ArrayList<Transaction>>();
 	private int _frequentRenterPoints;
 	private RenterPointStrategy _renterPointStrategy = new DefaultRenterPointStrategy();
     
-    public Customer (String name, int age) {
+    public Customer (String name, int age) 
+    {
         _name = name;
         _age = age;
 		_frequentRenterPoints = 0;
     }
     
-    public void addCheckout(ArrayList<Transaction> arg) {
+    public void addCheckout(ArrayList<Transaction> arg) 
+    {
         _checkouts.add(arg);
     }
     
-    public String getName() {
+    public String getName() 
+    {
         return _name;
     }
     
-    public String statement() {
+    public int getAge()
+    {
+    	return _age;
+    }
+    
+    public String statement() 
+    {
     
         double      totalAmount          = 0;
         String      result               = "Checkout Record for " + getName() + "\n";
@@ -56,7 +67,7 @@ public class Customer {
 	            checkoutTotal += currentSubTotal;
     	   }
     	   
-    	   _frequentRenterPoints += FrequentPointTactician.pickStrategy(this, currentCheckout).calculateRentalPoint();
+    	   _frequentRenterPoints += FrequentPointTactician.pickStrategy(this, currentCheckout).calculateRenterPoints();
     	   result += "Checkout Total: $" + checkoutTotal + "\n\n";
            totalAmount += checkoutTotal; 
         }
