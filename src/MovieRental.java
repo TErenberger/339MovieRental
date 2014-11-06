@@ -7,7 +7,7 @@ public class MovieRental {
 
 	public static void main(String[] args) {
 		
-		Customer testCustomer = new Customer("David Copperfield");
+		Customer testCustomer = new Customer("David Copperfield", 99);
 		
 		ArrayList<Transaction> checkout = new ArrayList<Transaction>();
 		
