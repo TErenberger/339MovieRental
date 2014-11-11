@@ -1,14 +1,30 @@
 package RenterPoints;
 
-import Products.Product;
+import java.util.ArrayList;
+
+import Transactions.Transaction;
 
 
 public class DefaultRenterPointStrategy implements RenterPointStrategy {
 
+	ArrayList<Transaction> checkout;
+	
+	public DefaultRenterPointStrategy(ArrayList<Transaction> checkout)
+	{
+		this.checkout = checkout;
+	}
+	
 	@Override
 	public int calculateRenterPoints() {
+		int points = 0;
 		
-		return 1;
+		for(Transaction line : this.checkout)
+		{
+			points++;
+		}
+		
+		return points;
+		
 	}
 
 }

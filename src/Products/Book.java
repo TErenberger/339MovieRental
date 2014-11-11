@@ -37,5 +37,11 @@ public class Book extends Product {
 			return 1;
 		}
 	}
+	
+	@Override
+	public String getCategory()
+	{
+		return "Book";
+	}
 
 }

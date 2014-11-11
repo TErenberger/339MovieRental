@@ -1,11 +1,7 @@
 package Runtime;
-import java.util.Enumeration;
-import java.util.Vector;
 import java.util.ArrayList;
 
-import RenterPoints.DefaultRenterPointStrategy;
 import RenterPoints.FrequentPointTactician;
-import RenterPoints.RenterPointStrategy;
 import Transactions.*;
 
 
@@ -15,7 +11,6 @@ public class Customer
     private int _age;
     private ArrayList<ArrayList<Transaction>> _checkouts = new ArrayList<ArrayList<Transaction>>();
 	private int _frequentRenterPoints;
-	private RenterPointStrategy _renterPointStrategy = new DefaultRenterPointStrategy();
     
     public Customer (String name, int age) 
     {
@@ -51,24 +46,19 @@ public class Customer
     	   result += "Checkout #" + index + "\n";
     	   double checkoutTotal = 0;
     	   
-    	   
     	   for(Transaction currentTransaction : currentCheckout)
     	   {
-    		   
+    		   	//add line of checkout
 	        	double currentSubTotal = 0;
-	        	
-	        	// add frequent renter points
-	        	
 	        	currentSubTotal += currentTransaction.getPrice();
-	        
-	         
-	            result += "\t" + currentTransaction.getProduct().getTitle() +
-	                      "\t$" +  String.format("%.2f", currentSubTotal) + "\n";
+	            result += "\t" + String.format("%-15s", currentTransaction.getProduct().getCategory()) 
+	            		+ "\t" + String.format("%-15s", currentTransaction.getProduct().getTitle()) +
+	                      "\t" +  String.format("$%.2f", currentSubTotal) + "\n";
 	            checkoutTotal += currentSubTotal;
     	   }
     	   
     	   _frequentRenterPoints += FrequentPointTactician.pickStrategy(this, currentCheckout).calculateRenterPoints();
-    	   result += "Checkout Total: $" + checkoutTotal + "\n\n";
+    	   result += String.format("Checkout Total: $%.2f", checkoutTotal) + "\n\n";
            totalAmount += checkoutTotal; 
         }
         

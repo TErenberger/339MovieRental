@@ -36,4 +36,9 @@ public class VideoGame extends Product {
 		}
 	}
 
+	@Override
+	public String getCategory()
+	{
+		return "Video Game";
+	}
 }

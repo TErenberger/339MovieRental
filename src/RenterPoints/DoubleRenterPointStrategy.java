@@ -1,12 +1,27 @@
 package RenterPoints;
 
-import Products.Product;
+import java.util.ArrayList;
 
-public class DoubleRenterPointStrategy implements RenterPointStrategy {
+import Products.Product;
+import Transactions.Transaction;
+
+public class DoubleRenterPointStrategy extends DefaultRenterPointStrategy implements RenterPointStrategy {
+
+	public DoubleRenterPointStrategy(ArrayList<Transaction> checkout)
+	{
+		super(checkout);
+	}
 
 	@Override
 	public int calculateRenterPoints() {
-		// TODO Auto-generated method stub
-		return 2;
+		int points = 0;
+		
+		for(Transaction line : this.checkout)
+		{
+			points+=2;
+		}
+		
+		
+		return points;
 	}
 }

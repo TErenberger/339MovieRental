@@ -33,4 +33,9 @@ public abstract class Movie extends Product {
     	_newRelease = newValue;
     }
     
+    @Override
+    public String getCategory()
+    {
+    	return "Movie";
+    }
 }

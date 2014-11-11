@@ -12,10 +12,9 @@ public class FrequentPointTactician {
 	{
 		
 		// double points if more than two types of categories
-		
 		if(twoCategoryCheck(currentCheckout))
 		{
-			return new DoubleRenterPointStrategy();
+			return new DoubleRenterPointStrategy(currentCheckout);
 		}
 		
 			
@@ -23,19 +22,35 @@ public class FrequentPointTactician {
 		// double points to 18-22 renting one or more new release
 		if(customer.getAge() >= 18 && customer.getAge() <= 22)
 		{
-			return new DoubleRenterPointStrategy();
+			return new DoubleRenterPointStrategy(currentCheckout);
 		}
 		
-		return new DefaultRenterPointStrategy();
+		return new DefaultRenterPointStrategy(currentCheckout);
 	}
 	
 	
 	
 	public static boolean twoCategoryCheck(ArrayList<Transaction> checkout)
 	{
+		ArrayList<String> categories = new ArrayList<String>();
 		
+		for(Transaction line : checkout)
+		{
+			if(!categories.contains(line.getProduct().getCategory()))
+			{
+				categories.add(line.getProduct().getCategory());
+			}
+		}
 		
-		return false;
+		if(categories.size() >= 2)
+		{
+			return true;
+		}
+		else
+		{
+			return false;
+		}
+		
 	}
 	
 	

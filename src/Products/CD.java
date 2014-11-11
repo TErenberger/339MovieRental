@@ -37,6 +37,12 @@ public class CD extends Product {
 			return 1;
 		}
 	}
+	
+	@Override
+	public String getCategory()
+	{
+		return "CD";
+	}
 
 
 }

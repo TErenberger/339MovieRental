@@ -13,5 +13,7 @@ public class Sale extends Transaction {
 	{
 		return _product.getSalePrice();
 	}
+	
+	
 
 }

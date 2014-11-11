@@ -39,6 +39,6 @@ public abstract class Product {
 		return _forSale;
 	}
 	public abstract double rentalPrice(int daysRented);
-	
+	public abstract String getCategory();
 	public abstract int frequentRentalPoints(int daysRented);
 }
